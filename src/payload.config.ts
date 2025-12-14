@@ -8,17 +8,27 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 
+import { fa } from 'payload/i18n/fa'
+import { en } from 'payload/i18n/en'
+import { Customers } from './collections/Customers'
+import { Category } from './collections/Category'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  i18n: {
+    supportedLanguages: { fa, en },
+    fallbackLanguage: 'en',
+  },
   admin: {
+    dateFormat: 'yyyy/MM/dd',
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media , Customers, Category],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
