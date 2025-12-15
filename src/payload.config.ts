@@ -12,6 +12,11 @@ import { fa } from 'payload/i18n/fa'
 import { en } from 'payload/i18n/en'
 import { Customers } from './collections/Customers'
 import { Category } from './collections/Category'
+import { Pages } from './collections/Pages'
+import { Products } from './collections/Products'
+import { Testimonials } from './collections/Testimonials'
+import { Header } from './globals/Header'
+import { Footer } from './globals/Footer'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,7 +33,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media , Customers, Category],
+  collections: [Users, Media, Customers, Category, Pages, Products, Testimonials],
+  globals: [Header, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
