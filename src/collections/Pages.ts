@@ -1,3 +1,4 @@
+import { Content } from '@/blocks/Content/config'
 import { CTA } from '@/blocks/CTA/config'
 import { FAQ } from '@/blocks/FAQ/confit'
 import { FeaturedProducts } from '@/blocks/FeaturedProducts/config'
@@ -35,7 +36,7 @@ export const Pages: CollectionConfig = {
       type: 'blocks',
       label: { en: 'Layout', fa: 'بلوک‌ها' },
       localized: true,
-      blocks: [HeroSlider, FAQ, CTA, FeaturedProducts, Testimonials, WhyUs],
+      blocks: [HeroSlider, FAQ, CTA, FeaturedProducts, Testimonials, WhyUs , Content],
     },
   ],
 }

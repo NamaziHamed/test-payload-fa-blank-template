@@ -1,5 +1,15 @@
 {
+  "workbench.activityBar.location": "top",
+  "editor.minimap.enabled": false,
+  "editor.guides.indentation": false,
+  "editor.renderLineHighlight": "gutter",
+  "breadcrumbs.enabled": false,
+  "window.density.editorTabHeight": "compact",
+  "workbench.tree.indent": 20,
+  "explorer.compactFolders": false,
   "npm.packageManager": "pnpm",
+  "editor.fontFamily": "'JetBrains Mono', 'Fira Code', monospace",
+  "editor.fontLigatures": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",

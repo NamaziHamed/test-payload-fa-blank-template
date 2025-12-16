@@ -310,6 +310,33 @@ export interface Page {
             blockName?: string | null;
             blockType: 'whyUs';
           }
+        | {
+            /**
+             * عنوان بخش محتوا
+             */
+            sectionTitle: string;
+            /**
+             * محتوای اصلی این بخش را وارد کنید
+             */
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -605,6 +632,14 @@ export interface PagesSelect<T extends boolean = true> {
                     icon?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              sectionTitle?: T;
+              content?: T;
               id?: T;
               blockName?: T;
             };
