@@ -1,0 +1,24 @@
+/* Force the body to never scroll horizontally */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+}
+
+/* Ensure the main content area handles overflow gracefully in RTL */
+.payload-default__main {
+  overflow-x: clip !important;
+  max-width: 100%;
+}
+
+/* Fix specific RTL toolbar issues */
+[dir="rtl"] .app-header {
+  width: 100%;
+  max-width: 100vw;
+  right: 0;
+  left: auto;
+}
+
+/* Optional: Prevent block fields from pushing width */
+.blocks-field {
+  max-width: 100%;
+}

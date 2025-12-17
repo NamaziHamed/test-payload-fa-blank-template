@@ -15,6 +15,7 @@ export const Pages: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
+    livePreview: {url:''},
   },
   fields: [
     {

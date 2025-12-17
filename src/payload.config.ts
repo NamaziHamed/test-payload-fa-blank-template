@@ -17,6 +17,7 @@ import { Products } from './collections/Products'
 import { Testimonials } from './collections/Testimonials'
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
+import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -34,7 +35,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Customers, Category, Pages, Products, Testimonials],
-  globals: [Header, Footer],
+  globals: [Header, Footer , SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

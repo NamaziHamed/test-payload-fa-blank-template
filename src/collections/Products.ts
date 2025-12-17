@@ -19,16 +19,33 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'description',
-      type: 'textarea',
+      type: 'richText',
       label: { en: 'Description', fa: 'توضیحات' },
       required: true,
       localized: true,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      label: { en: 'Slug', fa: 'نامک' },
+      required: true,
+      unique: true,
+      admin: {
+        position: 'sidebar',
+        description: {
+          en: 'Unique identifier for the product URL',
+          fa: 'شناسه یکتا برای آدرس محصول',
+        },
+      },
     },
     {
       name: 'price',
       type: 'number',
       label: { en: 'Price', fa: 'قیمت' },
       required: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'category',
@@ -37,6 +54,32 @@ export const Products: CollectionConfig = {
       label: { en: 'Categories', fa: 'دسته‌بندی‌ها' },
       hasMany: true,
       required: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'thumbnail',
+      type: 'upload',
+      relationTo: 'media',
+      label: { en: 'Thumbnail', fa: 'تصویر شاخص' },
+      required: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'banner',
+      type: 'upload',
+      relationTo: 'media',
+      label: { en: 'Banner', fa: 'بنر' },
+      admin: {
+        position: 'sidebar',
+        description: {
+          en: 'Recommended size: 2000x500 pixels',
+          fa: 'اندازه پیشنهادی: 2000x500 پیکسل',
+        },
+      },
     },
     {
       name: 'videos',

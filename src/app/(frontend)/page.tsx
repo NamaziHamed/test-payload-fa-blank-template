@@ -1,12 +1,17 @@
+import { getPayload } from 'payload'
 import React from 'react'
+import config from '@payload-config'
+import ComponentRenderer from '@/components/customs/ComponentRenderer'
 
-export default function Home() {
-  return (
-    <section className="flex flex-col w-screen h-screen justify-center items-center">
-      <h1 className="text-4xl text-blue-500 hover:animate-bounce transition-all delay-300 cursor-wait">
-        Bailemos con Payload
-      </h1>
-      <p className="text-shadow-blue-500 text-shadow-2xs">به استدیو رقص من خوش آمدید</p>
-    </section>
-  )
+export default async function Home() {
+  const payload = await getPayload({ config })
+
+  const settings = await payload.findGlobal({ slug: 'site-settings', depth: 1 })
+
+  const homePage = typeof settings.homePage ==='object' ? settings.homePage : null
+
+  return <div>
+    <h1>{homePage?.title}</h1>
+    <ComponentRenderer Layout={homePage?.layout} />
+  </div>
 }

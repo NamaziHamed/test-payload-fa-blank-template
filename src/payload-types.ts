@@ -101,10 +101,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   user:
@@ -252,8 +254,10 @@ export interface Page {
         | {
             slides?:
               | {
-                  headline: string;
-                  BackgroundImage: string | Media;
+                  /**
+                   * Recommended dimensions: 2000x500 pixels
+                   */
+                  sliderBanner?: (string | null) | Media;
                   product: string | Product;
                   id?: string | null;
                 }[]
@@ -349,9 +353,32 @@ export interface Page {
 export interface Product {
   id: string;
   name: string;
-  description: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Unique identifier for the product URL
+   */
+  slug: string;
   price: number;
   category: (string | Category)[];
+  thumbnail: string | Media;
+  /**
+   * Recommended size: 2000x500 pixels
+   */
+  banner?: (string | null) | Media;
   videos?:
     | {
         videoTitle: string;
@@ -572,8 +599,7 @@ export interface PagesSelect<T extends boolean = true> {
               slides?:
                 | T
                 | {
-                    headline?: T;
-                    BackgroundImage?: T;
+                    sliderBanner?: T;
                     product?: T;
                     id?: T;
                   };
@@ -654,8 +680,11 @@ export interface PagesSelect<T extends boolean = true> {
 export interface ProductsSelect<T extends boolean = true> {
   name?: T;
   description?: T;
+  slug?: T;
   price?: T;
   category?: T;
+  thumbnail?: T;
+  banner?: T;
   videos?:
     | T
     | {
@@ -758,6 +787,18 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: string;
+  siteName: string;
+  logo?: (string | null) | Media;
+  homePage: string | Page;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -780,6 +821,18 @@ export interface HeaderSelect<T extends boolean = true> {
  */
 export interface FooterSelect<T extends boolean = true> {
   copyrightNotice?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteName?: T;
+  logo?: T;
+  homePage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

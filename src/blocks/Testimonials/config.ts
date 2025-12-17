@@ -8,8 +8,8 @@ export const Testimonials: Block = {
       type: 'relationship',
       relationTo: 'testimonials',
       hasMany: true,
-      min: 1,
-      max: 10,
+      minRows: 1,
+      maxRows: 10,
     },
     {
       name: 'sectionTitle',

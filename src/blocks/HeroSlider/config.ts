@@ -15,18 +15,16 @@ export const HeroSlider: Block = {
       maxRows: 5,
       fields: [
         {
-          name: 'headline',
-          type: 'text',
-          label: { en: 'Headline', fa: 'تیتر' },
-          localized: true,
-          required: true,
-        },
-        {
-          name: 'BackgroundImage',
+          name: 'sliderBanner',
           type: 'upload',
           relationTo: 'media',
           label: { en: 'Background Image', fa: 'تصویر پس‌زمینه' },
-          required: true,
+          admin: {
+            description: {
+              en: 'Recommended dimensions: 2000x500 pixels',
+              fa: 'ابعاد پیشنهادی: 2000x500 پیکسل',
+            },
+          },
         },
         {
           name: 'product',
